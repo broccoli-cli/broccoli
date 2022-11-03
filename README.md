@@ -6,7 +6,12 @@
 
 cli based social media for superusers
 
-...
+## to-do's:
+- [ ] user register/login
+- [ ] friend add/remove function
+- [ ] share post
+- [ ] homepage show latest/friends posts
+- [ ] post like/dislike
 
 ## database struct:
 ![license](https://github.com/broccoli-cli/broccoli/blob/main/assets/database-diagram.png)
