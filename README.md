@@ -58,8 +58,11 @@ python3 terminal_client.py
 - ✅ Gerçek zamanlı mesajlaşma
 - ✅ Terminal client arayüzü
 - ✅ Mesaj veritabanına kaydetme
+- ✅ Çoklu kullanıcı desteği
 
-### Test Komutları:
+### 🧪 Test Yöntemleri:
+
+#### **1. Temel API Testleri:**
 ```bash
 # Register test
 curl -X POST http://localhost:8080/register \
@@ -71,6 +74,58 @@ curl -X POST http://localhost:8080/login \
   -H "Content-Type: application/json" \
   -d '{"username": "testuser", "password": "testpass123"}'
 ```
+
+#### **2. Manuel Çoklu Kullanıcı Testi:**
+```bash
+# Terminal 1: Sunucu
+python3 server.py
+
+# Terminal 2: Client 1
+python3 terminal_client.py
+
+# Terminal 3: Client 2  
+python3 terminal_client.py
+
+# Terminal 4: Client 3
+python3 terminal_client.py
+```
+
+#### **3. Otomatik Çoklu Kullanıcı Testi:**
+```bash
+# 3 kullanıcı otomatik test (elif, sercan, lordi)
+python3 test_multi_user.py
+```
+
+#### **4. Hızlı Test Script'i:**
+```bash
+# 3 client otomatik başlatır
+./quick_test.sh
+```
+
+### 📊 Test Senaryoları:
+
+#### **Senaryo 1: Temel İşlevsellik**
+- ✅ Kullanıcı kaydı ve girişi
+- ✅ JWT token alımı
+- ✅ WebSocket bağlantısı
+- ✅ Mesaj gönderme/alma
+
+#### **Senaryo 2: Çoklu Kullanıcı**
+- ✅ 3 kullanıcı aynı anda bağlanır
+- ✅ Her kullanıcı farklı mesajlar gönderir
+- ✅ Gerçek zamanlı iletişim test edilir
+- ✅ Kullanıcı giriş/çıkış bildirimleri
+
+#### **Senaryo 3: Performans Testi**
+- ✅ WebSocket polling çalışıyor
+- ✅ Mesaj gecikmesi < 1 saniye
+- ✅ Veritabanı kayıtları doğru
+- ✅ Bağlantı kopma/yeniden bağlanma
+
+### 🔍 Test Dosyaları:
+- `test_multi_user.py` - Otomatik çoklu kullanıcı testi
+- `quick_test.sh` - Hızlı test script'i
+- `terminal_client.py` - Manuel test client'ı
 
 ## 📋 Gelecek Özellikler (to-do's):
 
