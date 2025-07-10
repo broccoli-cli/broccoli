@@ -1,8 +1,10 @@
 import os
 from dotenv import load_dotenv
 from flask import Flask
+from flask_socketio import SocketIO
 from models import db
 from routes import init_routes
+from socket_events import init_socket_events
 
 # ---KURULUM ---
 
@@ -27,8 +29,14 @@ app.config['SECRET_KEY'] = secret_key
 # Veritabanını uygulamaya bağla
 db.init_app(app)
 
+# SocketIO'yu başlat
+socketio = SocketIO(app, cors_allowed_origins="*")
+
 # API endpoint'lerini kaydet
 init_routes(app)
+
+# WebSocket event'lerini kaydet
+init_socket_events(socketio, app)
 
 # --- SUNUCUYU BAŞLAT ---
 
@@ -37,4 +45,4 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
         
-    app.run(host='0.0.0.0', port=8080, debug=True) 
+    socketio.run(app, host='0.0.0.0', port=8080, debug=True) 
