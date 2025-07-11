@@ -257,7 +257,7 @@ Login and get JWT token
 
 ### Common Issues:
 
-1. **Port 5000 already in use:**
+1. **Port 8080**
    - Server uses port 8080 by default
    - Check if port is available
 
